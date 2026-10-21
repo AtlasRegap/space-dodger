@@ -1,10 +1,7 @@
 import sys
 import pygame
+from settings import WIDTH, HEIGHT, FPS, BG_COLOUR
 
-# --- Settings ---
-WIDTH, HEIGHT = 480, 640
-FPS = 60
-BG_COLOUR = (15, 15, 30)  # dark navy, as (red, green, blue), each 0-255
 
 
 def main():
