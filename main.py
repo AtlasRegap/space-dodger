@@ -1,7 +1,8 @@
 import sys
 import pygame
-from settings import WIDTH, HEIGHT, FPS, BG_COLOUR
+from settings import WIDTH, HEIGHT, FPS, BG_COLOUR, ASTEROID_SPAWN_TIME  # CHANGED
 from player import Player
+from asteroid import Asteroid                                      # NEW
 
 
 def main():
@@ -11,6 +12,8 @@ def main():
     clock = pygame.time.Clock()
 
     player = Player()
+    asteroids = pygame.sprite.Group()                              # NEW
+    spawn_timer = 0                                                # NEW
 
     running = True
     while running:
@@ -24,8 +27,16 @@ def main():
         # 2. Update
         player.update(dt)
 
+        spawn_timer += dt                                          # NEW
+        if spawn_timer >= ASTEROID_SPAWN_TIME:                     # NEW
+            spawn_timer -= ASTEROID_SPAWN_TIME                     # NEW
+            asteroids.add(Asteroid())                              # NEW
+
+        asteroids.update(dt)                                       # NEW
+
         # 3. Draw
         screen.fill(BG_COLOUR)
+        asteroids.draw(screen)                                     # NEW
         player.draw(screen)
         pygame.display.flip()
 
