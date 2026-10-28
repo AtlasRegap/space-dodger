@@ -10,6 +10,12 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(midbottom=(WIDTH // 2, HEIGHT - 20))
         # Exact horizontal position, kept as a float
         self.x = float(self.rect.x)
+        self.mask = pygame.mask.from_surface(self.image)
+
+
+
+
+
 
     def update(self, dt):
         keys = pygame.key.get_pressed()
@@ -31,3 +37,6 @@ class Player(pygame.sprite.Sprite):
 
     def draw(self, surface):
         surface.blit(self.image, self.rect)
+
+
+

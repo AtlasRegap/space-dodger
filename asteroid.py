@@ -22,7 +22,7 @@ class Asteroid(pygame.sprite.Sprite):
 
         # Exact vertical position, kept as a float
         self.y = float(self.rect.y)
-
+        self.mask = pygame.mask.from_surface(self.image)
 
 
 
