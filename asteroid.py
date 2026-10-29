@@ -1,12 +1,13 @@
 import random
 import pygame
-from settings import (WIDTH, HEIGHT, ASTEROID_SPEED, ASTEROID_COLOUR,
+from settings import (WIDTH, HEIGHT, ASTEROID_COLOUR,
                       ASTEROID_MIN_SIZE, ASTEROID_MAX_SIZE)
 
 
 class Asteroid(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, speed):
         super().__init__()
+        self.speed = speed
 
         # Pick a random size
         size = random.randint(ASTEROID_MIN_SIZE, ASTEROID_MAX_SIZE)
@@ -24,10 +25,8 @@ class Asteroid(pygame.sprite.Sprite):
         self.y = float(self.rect.y)
         self.mask = pygame.mask.from_surface(self.image)
 
-
-
     def update(self, dt):
-        self.y += ASTEROID_SPEED * dt
+        self.y += self.speed * dt
         self.rect.y = round(self.y)
 
         # Off the bottom of the screen? Remove it.
